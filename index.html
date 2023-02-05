@@ -38,7 +38,8 @@
             <h2>Hi {{name}} !</h2>
             <p>Here are the other people's names : </p>
             <ul style="font-family: monospace">
-              <li v-for="(world, wordName) in words" v-if="name != wordName">{{wordName}}: {{world}}</li>
+              <li v-for="(world, wordName) in words" v-if="name != wordName" :style="{textDecoration: isAlive[wordName] ? 'none' : 'line-through'}"
+              >{{wordName}}: {{world}}</li>
             </ul>
           </div>
         </v-container>
@@ -71,6 +72,22 @@
           'Sylvia': 'Parapluie / Umbrella',
           'Thomas': 'Miel / Honey',
           'Vanessa': 'Autoroute / Highway',
+        },
+        isAlive: {
+          'Lina': false,
+          'Ivan': false,
+          'Abir': false,
+          'Adri': false,
+          'Betty': false,
+          'Erwan': false,
+          'Hans': false,
+          'Hugo': true,
+          'Love': true,
+          'Qing': true,
+          'Shantia': true,
+          'Sylvia': false,
+          'Thomas': true,
+          'Vanessa': true,
         }
       }),
     })
