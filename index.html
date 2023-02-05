@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
+<body>
+  <div id="app">
+    <v-app>
+      <v-main style="font-family: fantasy;">
+        <v-container>
+          <div style="text-align: center;">
+            <img src="./logo.png" style="width: 60%;"/>  
+          </div>
+
+          <h1 class="text-center">Welcome to Lina's<br/>32nd birthday party !</h1>
+
+          <h2 class="mt-6">Rules</h2>
+          <ul>
+            <li>Everyone got a secret word they should not say</li>
+            <li>You can see everyone's word except yours</li>
+            <li>When you say your word, you are out</li>
+            <li>French or English are allowed</li>
+            <li>The last one standing wins</li>
+          </ul>
+
+          <div v-if="!nameSelected" class="mt-6">
+            <h2 class="mt-6">Who are you ?</h2>
+            <v-select :items="Object.keys(words)" label="Select your name in the list" v-model="name"></v-select>
+            <v-btn color="primary" @click="() => {nameSelected = true}" :disabled="!name">Yep that's me</v-btn>
+          </div>
+
+          <div v-else class="mt-6">
+            <h2>Hi {{name}} !</h2>
+            <p>Here are the other people's names : </p>
+            <ul style="font-family: monospace">
+              <li v-for="(world, wordName) in words" v-if="name != wordName">{{wordName}}: {{world}}</li>
+            </ul>
+          </div>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+
+      data: () => ({
+        name: '',
+        nameSelected: false,
+        words: {
+          'Lina': '',
+          'Ivan': '',
+          'Abir': 'Maracon / Macaroon',
+          'Adri': 'Piano / Piano',
+          'Betty': 'Crepe / Crepe',
+          'Erwan': 'Moutarde / Mustard',
+          'Hans': 'Lapin / Rabbit',
+          'Hugo': 'Pigeon / Pigeon',
+          'Love': 'ail / garlic',
+          'Qing': 'Vélo / Bicycle',
+          'Shantia': 'Massage / Massage',
+          'Sylvia': '',
+          'Thomas': 'Miel / Honey',
+          'Vanessa': 'Autoroute / Highway',
+        }
+      }),
+    })
+  </script>
+</body>
+
+</html>
